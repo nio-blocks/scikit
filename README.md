@@ -29,6 +29,8 @@ Each input will output a signal with a new attribute `target` that is the predic
 BatchTextClassifier
 ==============
 
+Similar to text classifier but with the added benefit that data can be loaded from elasticsearch or another database and sent in through a list of signals. All signals must be passed through the first list that goes through.
+
 Properties
 ----------
 
