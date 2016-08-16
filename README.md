@@ -33,6 +33,7 @@ Similar to text classifier but with the added benefit that data can be loaded fr
 
 Properties
 ----------
+None
 
 Dependencies
 ------------
