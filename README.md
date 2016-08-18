@@ -3,12 +3,12 @@ TextClassifier
 
 Take input text and classify it.
 
-When the block first is configuring, it loads in some training data to build a classifier.
+When the block first is configuring, it loads in some `training_data` to build a classifier.
 
 Properties
 ----------
 
-* **Training Data**: Map text to category
+* **training_data**: Map text to category
 
 Dependencies
 ------------
@@ -23,7 +23,7 @@ None
 Output
 ------
 
-Each input will output a signal with a new attribute `target` that is the predicted target value, based on the training data.
+Each input will output a signal with a new attribute `target` that is the predicted target value, based on the `training_data`.
 
 
 BatchTextClassifier
@@ -47,8 +47,8 @@ None
 
 Input
 ------
-* **Training**: Takes in a single list of signals such that each signal has a `data` and a `target` attribute.
-* **Classify**: Takes in signals that have at least a `data` attribute.
+* **training**: Takes in a single list of signals such that each signal has a `data` and a `target` attribute.
+* **classify**: Takes in signals that have at least a `data` attribute.
 
 Output
 ------
