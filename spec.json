@@ -1,0 +1,16 @@
+{
+  "nio/BatchTextClassifier": {
+    "Commands": {},
+    "Output": "* **Result**: Outputs the signal from the classify input but adds a `label` attribute with the correct classification of the `data`.\n* **Ready**: Outputs a signal that can be used to communicate with other services or parts of the same service that training for the block is completed.",
+    "Description": "Similar to text classifier but with the added benefit that data can be loaded from elasticsearch or another database and sent in through a list of signals. All signals must be passed through the first list that goes through.",
+    "Category": "SignalModifier",
+    "Dependencies": [
+      "* [scikit-learn](http://scikit-learn.org/stable/)",
+      "* [SciPy](https://www.scipy.org/)",
+      "* [NumPy](http://www.numpy.org/)"
+    ],
+    "Input": "* **training**: Takes in a single list of signals such that each signal has a `data` and a `target` attribute.\n* **classify**: Takes in signals that have at least a `data` attribute.",
+    "Version": "1.0.0",
+    "Properties": {}
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "nio/BatchTextClassifier": {
+    "Reference": "github.com/nio-blocks/scikit.git@v1.0.0",
+    "Language": "Python",
+    "Version": "1.0.0"
+  }
+}
