@@ -1,7 +1,7 @@
 {
-    "nio/BatchTextClassifier": {
+    "nio/TextClassifier": {
         "Category": "SignalModifier",
-        "Description": "Similar to text classifier but with the added benefit that data can be loaded from elasticsearch or another database and sent in through a list of signals. All signals must be passed through the first list that goes through.",
+        "Description": "",
         "Commands": {},
         "Version": "1.0.0",
         "Output": {
