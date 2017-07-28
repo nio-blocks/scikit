@@ -5,18 +5,18 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from nio.block.base import Block
 from nio.signal.base import Signal
 from nio.util.discovery import discoverable
-from nio.properties import VersionProperty, ListProperty, StringProperty, \
-    PropertyHolder
+from nio.properties import VersionProperty
 from nio.block.terminals import input
 from nio.block import output
 import re
+
 
 @input('classify')
 @input('training')
 @output('ready', label='Ready')
 @output('result', label='Result')
 @discoverable
-class BatchTweetClassifier(Block):
+class BatchTextClassifier(Block):
     version = VersionProperty('0.1.0')
 
     def __init__(self):
@@ -27,8 +27,6 @@ class BatchTweetClassifier(Block):
              ('tfidf', TfidfTransformer()),
              ('clf', SGDClassifier(loss='hinge', penalty='l2', alpha=1e-3,
                                    n_iter=5, random_state=42))])
-    def configure(self, context):
-        super().configure(context)
 
     def process_signals(self, signals, input_id=None):
         """ Process incoming signals.
@@ -43,7 +41,6 @@ class BatchTweetClassifier(Block):
             "Ready to process {} incoming signals".format(len(signals)))
         self._process_group(signals, input_id)
 
-
     def _process_group(self, signals, input_id):
         if input_id == 'training':
             return self._process_training_group(signals)
@@ -51,8 +48,6 @@ class BatchTweetClassifier(Block):
             return self._process_classify_group(signals)
 
     def _process_training_group(self, signals):
-
-
         if self._train_complete == True:
             #Do not train because the classifier has already been built
             self.logger.warning("Classifier has already been trained")
@@ -85,7 +80,6 @@ class BatchTweetClassifier(Block):
                                     exc_info=True)
         self.notify_signals(predicted_signals, 'result')
 
-
     def processTweet(self, tweet):
         # process the tweets
 
@@ -102,11 +96,3 @@ class BatchTweetClassifier(Block):
         #trim
         tweet = tweet.strip('\'"')
         return tweet
-
-
-
-
-
-
-
-
