@@ -2,12 +2,12 @@ from unittest.mock import MagicMock
 from nio.block.terminals import DEFAULT_TERMINAL
 from nio.signal.base import Signal
 from nio.testing.block_test_case import NIOBlockTestCase
-from ..batch_tweet_classifier_block import BatchTweetClassifier
+from ..batch_text_classifier_block import BatchTextClassifier
 
 class TestBatchTweetClassifier(NIOBlockTestCase):
 
     def test_process_data(self):
-        blk = BatchTweetClassifier()
+        blk = BatchTextClassifier()
         self.configure_block(blk, {})
         blk.logger = MagicMock()
         blk.start()

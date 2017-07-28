@@ -1,15 +1,28 @@
 {
-    "nio/BatchTextClassifier": {
-        "Category": "SignalModifier",
-        "Description": "Similar to text classifier but with the added benefit that data can be loaded from elasticsearch or another database and sent in through a list of signals. All signals must be passed through the first list that goes through.",
-        "Commands": {},
-        "Version": "1.0.0",
-        "Output": {
-            "Description": "* **Result**: Outputs the signal from the classify input but adds a `label` attribute with the correct classification of the `data`.\n* **Ready**: Outputs a signal that can be used to communicate with other services or parts of the same service that training for the block is completed."
-        },
-        "Properties": {},
-        "Input": {
-            "Description": "* **training**: Takes in a single list of signals such that each signal has a `data` and a `target` attribute.\n* **classify**: Takes in signals that have at least a `data` attribute."
-        }
-    }
+  "nio/BatchTextClassifier": {
+    "Commands": {},
+    "Dependencies": [],
+    "Description": "",
+    "Input": "",
+    "Output": "",
+    "Properties": {},
+    "Version": "0.1.0"
+  },
+  "nio/TextClassifier": {
+    "Commands": {},
+    "Dependencies": [],
+    "Description": "",
+    "Input": {
+      "Description": "* **training**: Takes in a single list of signals such that each signal has a `data` and a `target` attribute.\n* **classify**: Takes in signals that have at least a `data` attribute."
+    },
+    "Output": {
+      "Description": "* **Result**: Outputs the signal from the classify input but adds a `label` attribute with the correct classification of the `data`.\n* **Ready**: Outputs a signal that can be used to communicate with other services or parts of the same service that training for the block is completed."
+    },
+    "Properties": {
+      "Training Set": {
+        "description": ""
+      }
+    },
+    "Version": "0.1.0"
+  }
 }
