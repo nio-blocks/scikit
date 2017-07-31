@@ -53,17 +53,14 @@ class BatchTextClassifier(Block):
             # Do not train because the classifier has already been built
             self.logger.warning("Classifier has already been trained")
         else:
-            self._data = {}
-            self._data['data'] = []
-            self._data['target'] = []
+            data = {}
+            data['data'] = []
+            data['target'] = []
             for signal in signals:
                 # each time there is a new label, add it to target_names
-                self._data['data'].append(signal.data)
-                self._data['target'].append(signal.target)
-
-            self._data['data'] = [
-                self.processTweet(t) for t in self._data['data']]
-            self._classifier.fit(self._data['data'], self._data['target'])
+                data['data'].append(signal.data)
+                data['target'].append(signal.target)
+            self._classifier.fit(data['data'], data['target'])
             self._train_complete = True
             self.notify_signals([Signal({'ready': True})], 'ready')
 
@@ -72,7 +69,6 @@ class BatchTextClassifier(Block):
         self.logger.debug("Value of _classifier : {}".format(self._classifier))
         for signal in signals:
             try:
-                signal.data = self.processTweet(signal.data)
                 predicted = self._classifier.predict([signal.data])
                 self.logger.debug("Value of predicted : {}".format(predicted))
                 signal.label = predicted[0]
@@ -81,19 +77,3 @@ class BatchTextClassifier(Block):
                 self.logger.warning("Classifier does not have training data",
                                     exc_info=True)
         self.notify_signals(predicted_signals, 'result')
-
-    def processTweet(self, tweet):
-        """process the tweets"""
-        # Convert to lower case
-        tweet = tweet.lower()
-        # Convert www.* or https?://* to URL
-        tweet = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', 'URL', tweet)
-        # Convert @username to AT_USER
-        tweet = re.sub('@[^\s]+', 'AT_USER', tweet)
-        # Remove additional white spaces
-        tweet = re.sub('[\s]+', ' ', tweet)
-        # Replace #word with word
-        tweet = re.sub(r'#([^\s]+)', r'\1', tweet)
-        # trim
-        tweet = tweet.strip('\'"')
-        return tweet
