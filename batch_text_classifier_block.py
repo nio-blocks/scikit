@@ -17,6 +17,7 @@ import re
 @output('result', label='Result')
 @discoverable
 class BatchTextClassifier(Block):
+
     version = VersionProperty('0.1.0')
 
     def __init__(self):
@@ -48,8 +49,8 @@ class BatchTextClassifier(Block):
             return self._process_classify_group(signals)
 
     def _process_training_group(self, signals):
-        if self._train_complete == True:
-            #Do not train because the classifier has already been built
+        if self._train_complete is True:
+            # Do not train because the classifier has already been built
             self.logger.warning("Classifier has already been trained")
         else:
             self._data = {}
@@ -59,8 +60,9 @@ class BatchTextClassifier(Block):
                 # each time there is a new label, add it to target_names
                 self._data['data'].append(signal.data)
                 self._data['target'].append(signal.target)
-      
-            self._data['data'] = [self.processTweet(t) for t in self._data['data']]
+
+            self._data['data'] = [
+                self.processTweet(t) for t in self._data['data']]
             self._classifier.fit(self._data['data'], self._data['target'])
             self._train_complete = True
             self.notify_signals([Signal({'ready': True})], 'ready')
@@ -81,18 +83,17 @@ class BatchTextClassifier(Block):
         self.notify_signals(predicted_signals, 'result')
 
     def processTweet(self, tweet):
-        # process the tweets
-
-        #Convert to lower case
+        """process the tweets"""
+        # Convert to lower case
         tweet = tweet.lower()
-        #Convert www.* or https?://* to URL
-        tweet = re.sub('((www\.[^\s]+)|(https?://[^\s]+))','URL',tweet)
-        #Convert @username to AT_USER
-        tweet = re.sub('@[^\s]+','AT_USER',tweet)
-        #Remove additional white spaces
+        # Convert www.* or https?://* to URL
+        tweet = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', 'URL', tweet)
+        # Convert @username to AT_USER
+        tweet = re.sub('@[^\s]+', 'AT_USER', tweet)
+        # Remove additional white spaces
         tweet = re.sub('[\s]+', ' ', tweet)
-        #Replace #word with word
+        # Replace #word with word
         tweet = re.sub(r'#([^\s]+)', r'\1', tweet)
-        #trim
+        # trim
         tweet = tweet.strip('\'"')
         return tweet
