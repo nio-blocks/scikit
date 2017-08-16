@@ -2,11 +2,11 @@
   "nio/BatchTextClassifier": {
     "language": "Python",
     "version": "0.0.1",
-    "reference": "github.com/nio-blocks/scikit.git@v0.0.1"
+    "url": "git://github.com/nio-blocks/scikit.git"
   },
   "nio/TextClassifier": {
     "language": "Python",
     "version": "0.0.1",
-    "reference": "github.com/nio-blocks/scikit.git@v0.0.1"
+    "url": "git://github.com/nio-blocks/scikit.git"
   }
 }
