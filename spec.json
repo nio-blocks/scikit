@@ -1,18 +1,47 @@
 {
   "nio/BatchTextClassifier": {
-    "version": "0.0.1",
-    "description": "",
-    "inputs": {},
-    "outputs": {},
+    "version": "0.1.0",
+    "description": "Take input text and classify it.  Data can be loaded from elasticsearch or another database and sent in through a list of signals. All signals must be passed through the first list that goes through.",
     "properties": {},
+    "inputs": {
+      "classify": {
+        "description": "Takes in signals that have at least a `data` attribute."
+      },
+      "training": {
+        "description": "Takes in a single list of signals such that each signal has a `data` and a `target` attribute."
+      }
+    },
+    "outputs": {
+      "Ready": {
+        "description": "Outputs a signal that can be used to communicate with other services or parts of the same service that training for the block is completed."
+      },
+      "Result": {
+        "description": "Outputs the signal from the classify input but adds a `label` attribute with the correct classification of the `data`."
+      }
+    },
     "commands": {}
   },
   "nio/TextClassifier": {
-    "version": "0.0.1",
-    "description": "",
-    "inputs": {},
-    "outputs": {},
-    "properties": {},
+    "version": "0.1.0",
+    "description": "Take input text and classify it.  When the block first is configuring, it loads in some `training_data` to build a classifier.",
+    "properties": {
+      "training_set": {
+        "title": "Training Set",
+        "type": "ListType",
+        "description": "Training text to map to categories.",
+        "default": []
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Any list of signals."
+      }
+    },
+    "outputs": {
+      "default": {
+        "description": "Each input will output a signal with a new attribute `target` that is the predicted target value, based on the `training_set`."
+      }
+    },
     "commands": {}
   }
 }
