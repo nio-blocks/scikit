@@ -1,7 +1,9 @@
 from unittest.mock import MagicMock
+
 from nio.block.terminals import DEFAULT_TERMINAL
 from nio.signal.base import Signal
 from nio.testing.block_test_case import NIOBlockTestCase
+
 from ..text_classifier_block import TextClassifier
 
 

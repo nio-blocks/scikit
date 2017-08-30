@@ -2,8 +2,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.linear_model import SGDClassifier
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
+
 from nio.block.base import Block
-from nio.util.discovery import discoverable
 from nio.properties import VersionProperty, ListProperty, StringProperty, \
     PropertyHolder
 
@@ -14,7 +14,6 @@ class TrainingSetDataPoint(PropertyHolder):
     target = StringProperty(title="Target")
 
 
-@discoverable
 class TextClassifier(Block):
 
     training_set = ListProperty(

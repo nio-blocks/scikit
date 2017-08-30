@@ -2,20 +2,18 @@ from sklearn.pipeline import Pipeline
 from sklearn.linear_model import SGDClassifier
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
+
 from nio.block.base import Block
 from nio.signal.base import Signal
-from nio.util.discovery import discoverable
 from nio.properties import VersionProperty
 from nio.block.terminals import input
 from nio.block import output
-import re
 
 
 @input('classify')
 @input('training')
 @output('ready', label='Ready')
 @output('result', label='Result')
-@discoverable
 class BatchTextClassifier(Block):
 
     version = VersionProperty('0.1.0')

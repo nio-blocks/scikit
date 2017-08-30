@@ -1,6 +1,8 @@
 from unittest.mock import MagicMock
+
 from nio.signal.base import Signal
 from nio.testing.block_test_case import NIOBlockTestCase
+
 from ..batch_text_classifier_block import BatchTextClassifier
 
 
