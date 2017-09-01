@@ -16,7 +16,7 @@ from nio.block import output
 @output('result', label='Result')
 class BatchTextClassifier(Block):
 
-    version = VersionProperty('0.1.0')
+    version = VersionProperty("0.1.0")
 
     def __init__(self):
         super().__init__()
