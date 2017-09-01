@@ -18,7 +18,7 @@ class TextClassifier(Block):
 
     training_set = ListProperty(
         TrainingSetDataPoint, title="Training Set", default=[])
-    version = VersionProperty('0.1.0')
+    version = VersionProperty("0.1.0")
 
     def __init__(self):
         super().__init__()
