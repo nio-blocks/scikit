@@ -2,6 +2,9 @@
   "nio/BatchTextClassifier": {
     "version": "0.1.0",
     "description": "Take input text and classify it.  Data can be loaded from elasticsearch or another database and sent in through a list of signals. All signals must be passed through the first list that goes through.",
+    "categories": [
+      "Machine Learning"
+    ],
     "properties": {},
     "inputs": {
       "classify": {
@@ -24,6 +27,9 @@
   "nio/TextClassifier": {
     "version": "0.1.0",
     "description": "Take input text and classify it.  When the block first is configuring, it loads in some `training_data` to build a classifier.",
+    "categories": [
+      "Machine Learning"
+    ],
     "properties": {
       "training_set": {
         "title": "Training Set",
